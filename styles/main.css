@@ -39,6 +39,11 @@ body {
     text-decoration: none;
 }
 
+.links-container .navbar-link:active {
+    color: rgb(233,50,117);
+    background-color: white;
+}
+
 .links-container .navbar-link {
     display: table-cell;
     position: relative;
