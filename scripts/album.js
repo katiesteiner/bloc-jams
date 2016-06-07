@@ -30,6 +30,22 @@ var albumMarconi = {
     ]
 };
 
+//Checkpoint Example Album
+var albumBeatles = {
+    title: 'Let It Be',
+    artist: 'The Beatles',
+    label: 'Apple',
+    year: '1964',
+    albumArtUrl: 'assets/images/album_covers/13.png',
+    songs: [
+        { title: 'Let It Be', duration: '2:30' },
+        { title: 'Love Me Do', duration: '3:01' },
+        { title: 'Rich Man', duration: '4:05' },
+        { title: 'And I Love Her', duration: '3:45' },
+        { title: 'Abbey Road', duration: '3:21' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -41,12 +57,14 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+    
     
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -62,4 +80,15 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [albumPicasso, albumMarconi, albumBeatles];
+    var index = 1;
+    albumImage.addEventListener("click", function(toggleImages) {
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+    });
 };
+
