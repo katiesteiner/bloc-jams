@@ -116,11 +116,12 @@ var updateSeekBarWhileSongPlays = function(){
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
             updateSeekPercentage($seekBar, seekBarFillRatio);
-            setCurrentTimeInPlayerBar();
-            setTotalTimeInPlayerBar();
+            setCurrentTimeInPlayerBar(this.getTime());
+            setTotalTimeInPlayerBar(this.getDuration());
         });
     }
 };
+
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
     var offsetXPercent = seekBarFillRatio * 100;
@@ -143,7 +144,7 @@ var setupSeekBars = function(){
         if($(this).parent().attr('class') == 'seek-control') {
             seek(seekBarFillRatio * currentSoundFile.getDuration());
         } else {
-            setVoume(seekBarFillRatio * 100);
+            setVolume(seekBarFillRatio * 100);
         }
         updateSeekPercentage($(this), seekBarFillRatio);
     });
